@@ -28,7 +28,7 @@ const createSiteMenuTemplate = () => {
       />
       <label for="control__statistic" class="control__label">STATISTICS</label>
     </section>`
-  )
+  );
 };
 
 const createFilterTemplate = () => {
@@ -80,7 +80,7 @@ const createFilterTemplate = () => {
       />
       <label for="filter__archive" class="filter__label">Archive <span class="filter__archive-count">115</span></label>
     </section>`
-  )
+  );
 };
 
 const createBoardTemplate = () => {
@@ -94,7 +94,7 @@ const createBoardTemplate = () => {
       
       <div class="board__tasks"></div>    
     </section>`
-    )
+  );
 };
 
 const createTaskTemplate = () => {
@@ -142,7 +142,7 @@ const createTaskTemplate = () => {
         </div>
       </div>
     </article>`
-  )
+  );
 };
 
 const createTaskEditElement = () => {
@@ -325,33 +325,33 @@ const createTaskEditElement = () => {
         </div>
       </form>
     </article>`
-  )
+  );
 };
 
 const createLoadMoreBtnElement = () => {
   return (
     `<button class="load-more" type="button">load more</button>`
-  )
+  );
 };
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const siteMainElement = document.querySelector('.main');
-const siteHeaderElement = siteMainElement.querySelector('.main__control');
+const siteMainElement = document.querySelector(`.main`);
+const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-render(siteHeaderElement, createSiteMenuTemplate(), 'beforeend');
-render(siteMainElement, createFilterTemplate(), 'beforeend');
-render(siteMainElement, createBoardTemplate(), 'beforeend');
+render(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
+render(siteMainElement, createFilterTemplate(), `beforeend`);
+render(siteMainElement, createBoardTemplate(), `beforeend`);
 
-const siteBoardElement = siteMainElement.querySelector('.board');
-const siteTaskListElement = siteMainElement.querySelector('.board__tasks');
+const siteBoardElement = siteMainElement.querySelector(`.board`);
+const siteTaskListElement = siteMainElement.querySelector(`.board__tasks`);
 
-render(siteTaskListElement, createTaskEditElement(), 'beforeend');
+render(siteTaskListElement, createTaskEditElement(), `beforeen`);
 
 for (let i = 0; i < CARD_COUNT; i++) {
-  render(siteTaskListElement, createTaskTemplate(), 'beforeend');
+  render(siteTaskListElement, createTaskTemplate(), `beforeend`);
 }
 
-render(siteBoardElement, createLoadMoreBtnElement(), 'beforeend');
+render(siteBoardElement, createLoadMoreBtnElement(), `beforeend`);
