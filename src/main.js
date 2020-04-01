@@ -3,8 +3,8 @@
 const CARD_COUNT = 3;
 
 const createSiteMenuTemplate = () => {
-  return (
-    `<section class="control__btn-wrap">
+  return `
+    <section class="control__btn-wrap">
       <input
         type="radio"
         name="control"
@@ -27,13 +27,13 @@ const createSiteMenuTemplate = () => {
         class="control__input visually-hidden"
       />
       <label for="control__statistic" class="control__label">STATISTICS</label>
-    </section>`
-  );
+    </section>
+    `;
 };
 
 const createFilterTemplate = () => {
-  return (
-    `<section class="main__filter filter container">
+  return `
+    <section class="main__filter filter container">
       <input
         type="radio"
         id="filter__all"
@@ -79,13 +79,13 @@ const createFilterTemplate = () => {
         name="filter"
       />
       <label for="filter__archive" class="filter__label">Archive <span class="filter__archive-count">115</span></label>
-    </section>`
-  );
+    </section>
+    `;
 };
 
 const createBoardTemplate = () => {
-  return (
-    `<section class="board container">
+  return `
+    <section class="board container">
       <div class="board__filter-list">
         <a href="#" class="board__filter" data-sort-type="default">SORT BY DEFAULT</a>
         <a href="#" class="board__filter" data-sort-type="date-up">SORT BY DATE up</a>
@@ -93,13 +93,13 @@ const createBoardTemplate = () => {
       </div>
       
       <div class="board__tasks"></div>    
-    </section>`
-  );
+    </section>
+  `;
 };
 
 const createTaskTemplate = () => {
-  return (
-    `<article class="card card--black">
+  return `
+    <article class="card card--black">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
@@ -141,13 +141,13 @@ const createTaskTemplate = () => {
           </div>
         </div>
       </div>
-    </article>`
-  );
+    </article>
+    `;
 };
 
 const createTaskEditElement = () => {
-  return (
-    `<article class="card card--edit card--yellow card--repeat">
+  return `
+    <article class="card card--edit card--yellow card--repeat">
       <form class="card__form" method="get">
         <div class="card__inner">
           <div class="card__color-bar">
@@ -324,34 +324,30 @@ const createTaskEditElement = () => {
           </div>
         </div>
       </form>
-    </article>`
-  );
+    </article>
+  `;
 };
 
-const createLoadMoreBtnElement = () => {
-  return (
-    `<button class="load-more" type="button">load more</button>`
-  );
-};
+const createLoadMoreBtnElement = () => `<button class="load-more" type="button">load more</button>`;
 
-const render = (container, template, place) => {
+const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-render(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
-render(siteMainElement, createFilterTemplate(), `beforeend`);
-render(siteMainElement, createBoardTemplate(), `beforeend`);
+render(siteHeaderElement, createSiteMenuTemplate());
+render(siteMainElement, createFilterTemplate());
+render(siteMainElement, createBoardTemplate());
 
 const siteBoardElement = siteMainElement.querySelector(`.board`);
 const siteTaskListElement = siteMainElement.querySelector(`.board__tasks`);
 
-render(siteTaskListElement, createTaskEditElement(), `beforeen`);
+render(siteTaskListElement, createTaskEditElement());
 
 for (let i = 0; i < CARD_COUNT; i++) {
-  render(siteTaskListElement, createTaskTemplate(), `beforeend`);
+  render(siteTaskListElement, createTaskTemplate());
 }
 
-render(siteBoardElement, createLoadMoreBtnElement(), `beforeend`);
+render(siteBoardElement, createLoadMoreBtnElement());
