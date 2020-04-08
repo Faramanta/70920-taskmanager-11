@@ -10,7 +10,7 @@ const generateFilters = (tasks) => {
     count: 18,
   }, {
     title: `favorites`,
-    count: countItems(tasks, `isFavorite`),
+    count: 0,
   }, {
     title: `repeating`,
     count: 18,
@@ -20,16 +20,13 @@ const generateFilters = (tasks) => {
   }];
 };
 
-const countItems = (tasks, typeFilter) => {
-  let o = 0;
-
-  tasks.forEach((task) => {
-    task.typeFilter ? o++ : ``;
-    console.log(typeFilter, o);
-    return o;
-  });
-};
-
-
+// const countItems = (tasks, typeFilter) => {
+//   let o = 0;
+//
+//   tasks.forEach((task) => {
+//     task.typeFilter ? o++ : ``;
+//     return o;
+//   });
+// };
 
 export {generateFilters};

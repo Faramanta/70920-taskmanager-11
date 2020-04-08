@@ -33,12 +33,12 @@ const getRandomDate = () => {
 
   targetDate.setDate(targetDate.getDate() + diffValue);
 
-  return targetDate
+  return targetDate;
 };
 
 const generateRepeatingDays = () => {
   return Object.assign({}, DefaultRepeatingDays, {
-    "mo" : Math.random() > 0.5
+    "mo": Math.random() > 0.5
   });
 };
 
