@@ -1,1 +1,1 @@
-export const createLoadMoreBtnElement = () => `<button class="load-more" type="button">load more</button>`;
+export const createLoadMoreBtnTemplate = () => `<button class="load-more" type="button">load more</button>`;
