@@ -22,15 +22,6 @@ const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
 
-// let o = 0;
-//
-// tasks.forEach((task) => {
-//   task.isFavorite ? o++ : ``;
-//   console.log(task.isFavorite);
-//   return o;
-// });
-// console.log(o);
-
 render(siteHeaderElement, createSiteMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
 render(siteMainElement, createBoardTemplate());

@@ -8,3 +8,20 @@ export const formatTime = (date) => {
 
   return `${hours}:${minutes}`;
 };
+
+
+export const filterByFieldName = (tasks, fieldName) => {
+  return tasks.filter((task) => task[fieldName]);
+};
+
+export const filterToday = (tasks, currentDate) => {
+  return tasks.filter((task) => task.dueDate >= currentDate || task.dueDate === null);
+};
+
+export const filterOverdue = (tasks, currentDate) => {
+  return tasks.filter((task) => task.dueDate < currentDate);
+};
+
+export const filterRepeat = (tasks) => {
+  return tasks.filter((task) => task.repeatingDays[`mo`]);
+};

@@ -1,32 +1,30 @@
+import {filterOverdue} from "../utils";
+import {filterByFieldName} from "../utils";
+import {filterToday} from "../utils";
+import {filterRepeat} from "../utils";
+
 const generateFilters = (tasks) => {
+  const currentDate = new Date().valueOf();
+
   return [{
     title: `all`,
     count: tasks.length,
   }, {
     title: `overdue`,
-    count: 18,
+    count: filterOverdue(tasks, currentDate).length,
   }, {
     title: `today`,
-    count: 18,
+    count: filterToday(tasks, currentDate).length,
   }, {
     title: `favorites`,
-    count: 0,
+    count: filterByFieldName(tasks, `isFavorite`).length,
   }, {
     title: `repeating`,
-    count: 18,
+    count: filterRepeat(tasks).length,
   }, {
     title: `archive`,
-    count: 18,
+    count: filterByFieldName(tasks, `isArchive`).length,
   }];
 };
-
-// const countItems = (tasks, typeFilter) => {
-//   let o = 0;
-//
-//   tasks.forEach((task) => {
-//     task.typeFilter ? o++ : ``;
-//     return o;
-//   });
-// };
 
 export {generateFilters};
