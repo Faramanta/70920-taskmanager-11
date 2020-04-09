@@ -23,5 +23,5 @@ export const filterOverdue = (tasks, currentDate) => {
 };
 
 export const filterRepeat = (tasks) => {
-  return tasks.filter((task) => task.repeatingDays[`mo`]);
+  return tasks.filter((task) => Object.values(task.repeatingDays).some(Boolean));
 };

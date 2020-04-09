@@ -1,7 +1,4 @@
-import {filterOverdue} from "../utils";
-import {filterByFieldName} from "../utils";
-import {filterToday} from "../utils";
-import {filterRepeat} from "../utils";
+import {filterOverdue, filterByFieldName, filterToday, filterRepeat} from "../utils";
 
 const generateFilters = (tasks) => {
   const currentDate = new Date().valueOf();
