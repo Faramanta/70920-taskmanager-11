@@ -4,38 +4,58 @@ import LoadMoreButtonComponent from "./components/load-more-btn.js";
 import TaskEditComponent from "./components/task-edit.js";
 import TaskComponent from "./components/task.js";
 import TasksComponent from "./components/tasks.js";
+import NoTasksComponent from "./components/no-tasks.js";
 import SiteMenuComponent from "./components/site-menu.js";
 import SortComponent from "./components/sort.js";
 import {generateFilters} from "./mock/filter.js";
 import {generateTasks} from "./mock/task.js";
 import {render, RenderPosition} from "./utils.js";
-
-const TASK_COUNT = 22;
-const SHOWING_TASKS_COUNT_ON_START = 8; // на старте 8 задач
-const SHOWING_TASKS_COUNT_BY_BUTTON = 8; // по каждому клику по кнопке еще +8
+import {TASK_COUNT, SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON, KeyCode} from "./const.js";
 
 const renderTask = (taskListElement, task) => {
-  const onEditButtonClick = () => {
+  const replaceTaskToEdit = () => {
     taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
   };
 
-  const onEditFormSubmit = (evt) => {
-    evt.preventDefault();
+  const replaseEditToTask = () => {
     taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
+  };
+
+  const onEscKeyDown = (evt) => {
+    const isEscKey = evt.key === KeyCode.ESCAPE || evt.key === KeyCode.ESC;
+
+    if (isEscKey) {
+      replaseEditToTask();
+      document.removeEventListener(`keydown`, onEscKeyDown);
+    }
   };
 
   const taskComponent = new TaskComponent(task);
   const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
-  editButton.addEventListener(`click`, onEditButtonClick);
+  editButton.addEventListener(`click`, () => {
+    replaceTaskToEdit();
+    document.addEventListener(`keydown`, onEscKeyDown);
+  });
 
   const taskEditComponent = new TaskEditComponent(task);
   const editForm = taskEditComponent.getElement().querySelector(`form`);
-  editForm.addEventListener(`submit`, onEditFormSubmit);
+  editForm.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    replaseEditToTask();
+    document.removeEventListener(`keydown`, onEscKeyDown);
+  });
 
   render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
 };
 
 const renderBoard = (boardComponent, tasks) => {
+  const isAllTasksArchived = tasks.every((task) => task.isArchive);
+
+  if (isAllTasksArchived) {
+    render(boardComponent.getElement(), new NoTasksComponent().getElement(), RenderPosition.BEFOREEND);
+    return;
+  }
+
   render(boardComponent.getElement(), new SortComponent().getElement(), RenderPosition.BEFOREEND);
   render(boardComponent.getElement(), new TasksComponent().getElement(), RenderPosition.BEFOREEND);
 
