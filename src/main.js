@@ -10,10 +10,7 @@ import SortComponent from "./components/sort.js";
 import {generateFilters} from "./mock/filter.js";
 import {generateTasks} from "./mock/task.js";
 import {render, RenderPosition} from "./utils.js";
-
-const TASK_COUNT = 22;
-const SHOWING_TASKS_COUNT_ON_START = 8; // на старте 8 задач
-const SHOWING_TASKS_COUNT_BY_BUTTON = 8; // по каждому клику по кнопке еще +8
+import {TASK_COUNT, SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON, KeyCode} from "./const.js";
 
 const renderTask = (taskListElement, task) => {
   const replaceTaskToEdit = () => {
@@ -25,7 +22,7 @@ const renderTask = (taskListElement, task) => {
   };
 
   const onEscKeyDown = (evt) => {
-    const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
+    const isEscKey = evt.key === KeyCode.ESCAPE || evt.key === KeyCode.ESC;
 
     if (isEscKey) {
       replaseEditToTask();

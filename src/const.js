@@ -31,3 +31,12 @@ export const MONTH_NAMES = [
   `November`,
   `December`,
 ];
+
+export const TASK_COUNT = 22;
+export const SHOWING_TASKS_COUNT_ON_START = 8; // на старте 8 задач
+export const SHOWING_TASKS_COUNT_BY_BUTTON = 8; // по каждому клику по кнопке еще +8
+
+export const KeyCode = {
+  ESC: `Esc`,
+  ESCAPE: `Escape`
+};
