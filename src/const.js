@@ -40,3 +40,9 @@ export const KeyCode = {
   ESC: `Esc`,
   ESCAPE: `Escape`
 };
+
+export const SortType = {
+  DATE_DOWN: `date-down`,
+  DATE_UP: `date-up`,
+  DEFAULT: `default`
+};
